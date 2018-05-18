@@ -2,7 +2,7 @@ body{
     color: #666;
 }
 a {
-    color: rgba(171, 5, 53, 1);
+    color: #B5A172;
 }
 a:hover, a:active, a:focus {
     color: #333333;
@@ -11,6 +11,8 @@ a:hover, a:active, a:focus {
     width:100%;
     text-align:center;
     margin:10px 0 30px;
+    font-size: 35px;
+    font-weight: bold;
 }
 .login-box, .register-box{
     margin:0 auto;
@@ -19,7 +21,9 @@ a:hover, a:active, a:focus {
     background: #fcf1f0;
 }
 .login-logo{
-    font-size:27px
+    font-size:27px;
+    color:#B5A172;
+    font-weight:600
 }
 .login-logo a, .register-logo a{
     color: #a81f42;
@@ -62,31 +66,33 @@ a:hover, a:active, a:focus {
     color: #666;
 }
 .skin-blue .main-header .navbar{
-    background-color: #F2F2F2;
+    background-color: #000;
 }
 .skin-blue .main-header .navbar .nav>li>a{
-    color:#000;
+    color:#fff;
 }
 .skin-blue .main-header .navbar .nav>li>a:hover, .skin-blue .main-header .navbar .nav>li>a:active, .skin-blue .main-header .navbar .nav>li>a:focus, .skin-blue .main-header .navbar .nav .open>a, .skin-blue .main-header .navbar .nav .open>a:hover, .skin-blue .main-header .navbar .nav .open>a:focus, .skin-blue .main-header .navbar .nav>.active>a{
     background: none;
-    color: #C71A41;
+    color: #B5A172;
 }
 .skin-blue .main-header .logo,.skin-blue .main-header .logo:hover {
     background-color: transparent;
-    width:120px;
-    margin:7px
+    width:133px;
+    margin:7px;
+    font-size:25px;
+    font-weight:bold;
 }
 .box.box-primary {
     border-top-color: #fcf1f0;
 }
 .titulo{
-    color: #000;
-    font-weight:bold;
-    font-size:30px;
+    color: #B5A172;
+    font-weight:600;
+    font-size:22px;
     position:absolute;
     left:50%;
-    top:12px;
-    margin-left:-190px;
+    top:18px;
+    margin-left:-140px;
 }
 .skin-blue .main-header li.user-header{
     background-color: #a81f42;
@@ -131,5 +137,17 @@ th div{
     font-size:15px
 }
 .label-danger{
-    background-color:#6285BC!important
+    background-color:#B5A172!important
+}
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary, .btn-primary.active:focus{
+    color: #B5A172;
+    background-color: #2F2E2B;
+    border-color: #204d74;
+}
+.btn-primary.active.focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover{
+    background-color: #848687;
+    border-color: #122b40;
+}
+.md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover{
+    background-color: rgba(0, 0, 0, 0.2);
 }

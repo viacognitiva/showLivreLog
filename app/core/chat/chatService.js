@@ -22,7 +22,7 @@
             var retorno = [];
             var listaId = [];
 
-            return $http.get('/api/logconversation/treinamento')
+            return $http.get('/api/conversation/chat')
                 .then(retornaChat)
                 .catch(errorChat);
 
@@ -32,36 +32,37 @@
                 var pos = 0;
                 qtdChat = 0;
 
-                angular.forEach(data.docs, function(item){
+                angular.forEach(data.rows, function(item){
 
                     var jsonParam = {};
-                    angular.forEach(item.response.entities, function(ent){
+
+                    angular.forEach(item.doc.data.entities, function(ent){
                         jsonParam.entidade = ent.entity;
                         jsonParam.confidenceEntidade =parseFloat((ent.confidence*100).toFixed(2)) ;
                     });
 
-                    angular.forEach(item.response.intents, function(int){
-                      jsonParam.intencao = int.intent;
-                      jsonParam.confidenceIntencao = parseFloat((int.confidence*100).toFixed(2)) ;
+                    angular.forEach(item.doc.data.intents, function(int){
+                        jsonParam.intencao = int.intent;
+                        jsonParam.confidenceIntencao = parseFloat((int.confidence*100).toFixed(2)) ;
                     });
 
-                    angular.forEach(item.response.input, function(text){
+                    angular.forEach(item.doc.data.input, function(text){
                         if(text.length!=0)jsonParam.msgUser = text;
                     });
 
-                    if(item.response.context.conversation_id.length!=0){
-                        jsonParam.conversation_id = item.response.context.conversation_id;
-                        jsonParam.data = $filter('date')(item.response_timestamp, "dd/MM/yyyy HH:mm:ss");
-                        jsonParam.id=item.log_id;
-                        jsonParam.treinado=item.treinado;
+                    if(item.doc.data.context.conversation_id.length!=0){
+                        jsonParam.conversation_id = item.doc.data.context.conversation_id;
+                        jsonParam.data = $filter('date')(new Date(item.doc.dateText), "dd/MM/yyyy HH:mm:ss");
+                        jsonParam.id=item.id;
+                        jsonParam.treinado=item.doc.treinado;
                     }
 
                     if(!angular.equals(jsonParam, {})){
                         retorno.push(jsonParam);
                     }
 
-                    if (!listaId.includes(item.response.context.conversation_id)){
-                        listaId.push(item.response.context.conversation_id);
+                    if (!listaId.includes(item.doc.data.context.conversation_id)){
+                        listaId.push(item.doc.data.context.conversation_id);
                     }
 
                     qtdChat = qtdChat + 1;

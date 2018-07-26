@@ -1,7 +1,7 @@
-var jwt = require('jsonwebtoken');
-var cloudant = require('./cloudant.js');
+const jwt = require('jsonwebtoken');
+const cloudant = require('./cloudant.js');
 
-var auth = {
+const auth = {
 
     login : function(req,res) {
 

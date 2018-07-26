@@ -16,7 +16,7 @@
 
             var retorno = [];
 
-            return $http.get('/api/logconversation/outros')
+            return $http.get('/api/conversation/outros')
                 .then(retornaOutros)
                 .catch(errorOutros);
 

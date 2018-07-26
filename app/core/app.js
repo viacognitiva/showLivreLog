@@ -6,7 +6,6 @@
         'app.index',
         'app.login',
         'app.chat',
-        'app.user',
         'app.outros',
         'app.filtersC',
         'app.filtersT',

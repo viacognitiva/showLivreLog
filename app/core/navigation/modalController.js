@@ -38,7 +38,7 @@
                                 message: item.msgUser
                             };
 
-                            $http.post('/api/logconversation/intencao',JSON.stringify(data),config).then(
+                            $http.post('/api/conversation/intencao',JSON.stringify(data),config).then(
 
                                 function(response){
 
@@ -51,7 +51,7 @@
                                                 idLog:valSel,
                                                 banco:valBanco
                                             };
-                                            $http.post('/api/logconversation/treinamento/status',JSON.stringify(data1),config)
+                                            $http.post('/api/conversation/treinamento/status',JSON.stringify(data1),config)
                                             .then(function(response){
 
                                                 },
@@ -87,7 +87,7 @@
                                     idLog:valSel
                                 };
 
-                                $http.post('/api/logconversation/entidade/synonyms',JSON.stringify(data),config).then(
+                                $http.post('/api/conversation/entidade/synonyms',JSON.stringify(data),config).then(
 
                                     function(response){
 
@@ -101,7 +101,7 @@
                                                     idLog:valSel,
                                                     banco:valBanco
                                                 };
-                                                $http.post('/api/logconversation/treinamento/status',JSON.stringify(data1),config).then(
+                                                $http.post('/api/conversation/treinamento/status',JSON.stringify(data1),config).then(
 
                                                     function(response){
                                                         $ctrl.sucessoMessage="Sinonimo criado com sucesso.";
@@ -128,7 +128,7 @@
                                     id:valSel
                                 };
 
-                                $http.post('/api/logconversation/entidade',JSON.stringify(data),config).then(
+                                $http.post('/api/conversation/entidade',JSON.stringify(data),config).then(
                                     function(response){
 
                                         if(response.status==200){
@@ -142,7 +142,7 @@
                                                     idLog:valSel,
                                                     banco:valBanco
                                                 };
-                                                $http.post('/api/logconversation/treinamento/status',JSON.stringify(data1),config).then(
+                                                $http.post('/api/conversation/treinamento/status',JSON.stringify(data1),config).then(
                                                     function(response){
                                                         $ctrl.sucessoMessage="Valor da Entidade criado com sucesso.";
                                                     },
@@ -185,7 +185,7 @@
 
                 limpar();
 
-                $http.get('/api/logconversation/entities').then(function(response) {
+                $http.get('/api/conversation/entities').then(function(response) {
 
                     var retorno = [];
                     var data = response.data;
@@ -222,7 +222,7 @@
 
                 limpar();
 
-                $http.get('/api/logconversation/intencoes').then(function(response) {
+                $http.get('/api/conversation/intencoes').then(function(response) {
 
                     var retorno = [];
                     var data = response.data;
@@ -259,7 +259,7 @@
 
                 limpar();
 
-                 $http.get('/api/logconversation/entities').then(function(response) {
+                 $http.get('/api/conversation/entities').then(function(response) {
 
                     var retorno = [];
                     var data = response.data;
@@ -296,7 +296,7 @@
 
                 limpar();
 
-                $http.get('/api/logconversation/intencoes').then(function(response) {
+                $http.get('/api/conversation/intencoes').then(function(response) {
 
                     var retorno = [];
                     var data = response.data;
@@ -322,7 +322,7 @@
                 var entidade = $scope.selectedEntidade;
                 if($ctrl.defineVlrSin == 'Sinonimo'){
 
-                    $http.get('/api/logconversation/entidade/value/'+entidade).then(
+                    $http.get('/api/conversation/entidade/value/'+entidade).then(
                         function(response) {
 
                             var retorno = [];

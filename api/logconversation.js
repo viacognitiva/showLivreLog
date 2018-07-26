@@ -1,27 +1,22 @@
 require('dotenv-safe').load();
 
-var watson = require('watson-developer-cloud');
-var request=require('request');
-var express = require('express');
-var app = express();
-app.set('port', process.env.PORT || 2000);
+const watson = require('watson-developer-cloud');
+const wts_username = process.env.WTS_USERNAME;
+const wts_password = process.env.WTS_PASSWORD;
+const workspacesId = process.env.WORKSPACE_ID;
+const protocol = process.env.NODE_ENV == 'production' ? "https" : "http" ;
 
-var wts_username = process.env.WTS_USERNAME;
-var wts_password = process.env.WTS_PASSWORD;
-var workspacesId = process.env.WORKSPACE_ID;
-var protocol = process.env.NODE_ENV == 'production' ? "https" : "http" ;
-
-var conversation = new watson.ConversationV1({
+const conversation = new watson.ConversationV1({
     username: wts_username,
     password: wts_password,
-    version_date: '2018-02-16'
+    version_date: '2018-07-10'
 });
 
-var logConversation = {
+const logConversation = {
 
     get : function(req,res) {
 
-        var params = {
+        const params = {
             workspace_id: workspacesId,
         };
 
@@ -38,7 +33,7 @@ var logConversation = {
 
     getEntidades : function(req,res) {
 
-        var params = {
+        const params = {
             workspace_id: workspacesId,
         };
 
@@ -55,7 +50,7 @@ var logConversation = {
 
     getEntidadeValue : function(req,res) {
 
-        var params = {
+        const params = {
             workspace_id: workspacesId,
             entity: req.params.entity
         };
@@ -72,7 +67,7 @@ var logConversation = {
 
     criarSinonimo : function(req,res) {
 
-        var params = {
+        const params = {
             workspace_id: workspacesId,
             entity: req.body.entidade,
             value: req.body.valor,
@@ -91,7 +86,7 @@ var logConversation = {
 
     getIntencoes : function(req,res) {
 
-        var params = {
+        const params = {
             workspace_id: workspacesId,
         };
 
@@ -108,7 +103,7 @@ var logConversation = {
 
     treinaIntencao : function(req,res) {
 
-        var params = {
+        const params = {
             workspace_id: workspacesId,
             intent: req.body.intencao,
             examples: [

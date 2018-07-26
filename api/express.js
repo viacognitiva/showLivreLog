@@ -1,14 +1,14 @@
-var	express	= require('express');
-var	bodyParser = require('body-parser');
-var helmet = require('helmet');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
-
 require('dotenv-safe').load();
+
+const express	= require('express');
+const bodyParser = require('body-parser');
+const helmet = require('helmet');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 module.exports = function() {
 
-    var	app	= express();
+    const app = express();
     app.set('port', process.env.PORT || 3000);
 
     //middleware

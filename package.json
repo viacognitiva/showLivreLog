@@ -1,7 +1,7 @@
 {
-  "name": "InvestBot-Log",
+  "name": "viaBotLog",
   "version": "1.0.0",
-  "description": "InvestBot Log",
+  "description": "Monitoramento viaBot",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -9,23 +9,21 @@
   "author": "Rodrigo Florentino",
   "license": "ISC",
   "dependencies": {
+    "@cloudant/cloudant": "^2.3.0",
     "body-parser": "^1.18.2",
-    "cloudant": "^1.10.0",
     "cookie-parser": "^1.4.3",
     "dotenv-safe": "^4.0.4",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "helmet": "^3.9.0",
     "jsonwebtoken": "^8.1.1",
-    "node-schedule": "^1.3.0",
-    "socket.io": "^2.0.4",
-    "watson-developer-cloud": "^3.2.1"
+    "watson-developer-cloud": "^3.7.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/viacognitiva/investbot-log.git"
+    "url": "https://github.com/viacognitiva/viaBotLog.git"
   },
   "engines": {
-    "node": "6.9.4"
+    "node": "6.14.2"
   }
 }

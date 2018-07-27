@@ -24,6 +24,6 @@
     "url": "https://github.com/viacognitiva/viaBotLog.git"
   },
   "engines": {
-    "node": "6.14.2"
+    "node": "6.9.4"
   }
 }

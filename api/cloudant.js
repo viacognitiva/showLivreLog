@@ -1,10 +1,10 @@
 require('dotenv-safe').load();
 
-const Cloudant = require('@cloudant/cloudant');
-const cloudant_url = process.env.CLOUDANT_URL;
-const services = JSON.parse(process.env.VCAP_SERVICES || "{}");
-const user = process.env.CLOUDANT_USER;
-const password = process.env.CLOUDANT_PASSWORD;
+var Cloudant = require('@cloudant/cloudant');
+var cloudant_url = process.env.CLOUDANT_URL;
+var services = JSON.parse(process.env.VCAP_SERVICES || "{}");
+var user = process.env.CLOUDANT_USER;
+var password = process.env.CLOUDANT_PASSWORD;
 
 if(process.env.VCAP_SERVICES) {
 
@@ -17,16 +17,16 @@ if(process.env.VCAP_SERVICES) {
     }
 }
 
-const cloudantDB = Cloudant({url:cloudant_url, account:user, password:password});
+var cloudantDB = Cloudant({url:cloudant_url, account:user, password:password});
 db = cloudantDB.db.use(process.env.CLOUDANT_DB);
 dbOutros = cloudantDB.db.use(process.env.CLOUDANT_DBTREINO);
 dbUser = cloudantDB.db.use(process.env.CLOUDANT_DBUSER);
 
-const cloudant = {
+var cloudant = {
 
     get : function(req, res) {
 
-        const id = req.params.id;
+        var id = req.params.id;
 
         db.get(id, function(err, data) {
             res.status(200).json(data);
@@ -69,39 +69,9 @@ const cloudant = {
 
     },
 
-    listWorkspace : function (req, res) {
-
-        db = cloudantDB.db.use('workspace');
-        db.index({name:'_id', type:'json', index:{fields:['status']}});
-
-        var query = { selector: { status: 'ativo' }};
-
-        db.find(query, function(err, data) {
-            if (err) {
-                return console.log('[db.listWorkspace] ', err.message);
-            }
-            res.status(201).json(data);
-        });
-
-    },
-
-    getWorkspaceSelecionada : function (req, res) {
-
-        db = cloudantDB.db.use('workspace');
-        db.index( {name:'_id', type:'json', index:{fields:['selecionado']}});
-
-        var query = { selector: { selecionado: 'true' }};
-        db.find(query, function(err, data) {
-            if (err) {
-                return console.log('[db.getWorkspaceSelected] ', err.message);
-            }
-            res.status(201).json(data);
-        });
-    },
-
     atualizaStatusTreinamento : function (req, res){
 
-        const id = req.body.idLog;
+        var id = req.body.idLog;
 
         if(req.body.banco == 'chat'){
 

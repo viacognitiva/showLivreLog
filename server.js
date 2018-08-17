@@ -47,8 +47,8 @@ app.get('/api/conversation/getInfoData/:data', function(req, res) {
     cloudant.getInfoData(req, res);
 });
 
-app.get('/api/conversation/getInfoMes', function(req, res) {
-    cloudant.getInfoMes(req, res);
+app.get('/api/conversation/getInfoAno', function(req, res) {
+    cloudant.getInfoAno(req, res);
 });
 
 app.listen(app.get('port'), function() {

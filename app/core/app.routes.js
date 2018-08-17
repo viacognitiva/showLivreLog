@@ -13,6 +13,7 @@
         $urlRouterProvider.when('/chat/', '/chat/list');
         $urlRouterProvider.when('/outros', '/outros/list');
         $urlRouterProvider.when('/outros/', '/outros/list');
+        $urlRouterProvider.when('/report', '/report/list');
 
         $stateProvider
             .state('login', {
@@ -109,15 +110,23 @@
                     }
                 }
             })
-            .state('root.rel', {
-                url: 'relatorio',
+            .state('root.report', {
+                abstract: true,
+                url: 'report',
+                data: {
+                    title: 'Relatórios',
+                    breadcrumb: 'Relatórios'
+                }
+            })
+            .state('root.report.list', {
+                url: '/list',
                 restrictions: {
                     ensureAuthenticated: true
                 },
                 data: {
                     title: 'Relatórios',
                     breadcrumb: 'Relatórios',
-                    caminho: '/relatorio'
+                    caminho: '/report/list'
                 },
                 views: {
                     'content@': {
@@ -127,7 +136,6 @@
                     }
                 }
             })
-
         };
 
         angular.module('app').run(run);

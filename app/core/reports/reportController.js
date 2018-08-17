@@ -21,9 +21,9 @@
             barDatasetSpacing : 1
         };
 
-        var barData = {
+        var barDataDia = {
             labels: ["00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00",
-                "12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
+                     "12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
             datasets: [
                 {
                     label: "Horários de Acesso",
@@ -31,7 +31,21 @@
                     strokeColor: "rgba(220,220,220,0.8)",
                     highlightFill: "rgba(220,220,220,0.75)",
                     highlightStroke: "rgba(220,220,220,1)",
-                    data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    data:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                }
+            ]
+        };
+
+        var barDataAno = {
+            labels: ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"],
+            datasets: [
+                {
+                    label: "Quantidade de Acessos",
+                    fillColor: "rgba(220,220,220,0.8)",
+                    strokeColor: "rgba(220,220,220,0.8)",
+                    highlightFill: "rgba(220,220,220,0.75)",
+                    highlightStroke: "rgba(220,220,220,1)",
+                    data:[0,0,0,0,0,0,0,0,0,0,0,0]
                 }
             ]
         };
@@ -41,11 +55,11 @@
         buscar();
 
         function getJson() {
-            return reportService.getDia(new Date()).then(function(dados) {
+            reportService.getDia(new Date()).then(function(dados) {
 
-                barData = {
+                barDataDia = {
                     labels: ["00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00",
-                        "12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
+                             "12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
                     datasets: [
                         {
                             label: "Horários de Acesso",
@@ -58,8 +72,27 @@
                     ]
                 };
 
-                //barData.datasets[0].data = dados;
-                vm.barData = barData;
+                vm.barDataDia = barDataDia;
+
+            });
+
+            return reportService.getAno().then(function(dados) {
+
+                barDataAno = {
+                    labels: ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"],
+                    datasets: [
+                        {
+                            label: "Quantidade de Acessos",
+                            fillColor: "rgba(220,220,220,0.8)",
+                            strokeColor: "rgba(220,220,220,0.8)",
+                            highlightFill: "rgba(220,220,220,0.75)",
+                            highlightStroke: "rgba(220,220,220,1)",
+                            data:dados
+                        }
+                    ]
+                };
+
+                vm.barDataAno = barDataAno;
 
             });
         }
@@ -68,7 +101,8 @@
             $scope.myPromise = getJson();
         }
 
-        vm.barData = barData;
+        vm.barDataDia = barDataDia;
+        vm.barDataAno = barDataAno;
         vm.barOptions = barOptions;
 
     }

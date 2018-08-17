@@ -129,25 +129,38 @@ var cloudant = {
         db.find(query, function(err, data) {
 
             if (err) {
-                return console.log('[db.getInfoData] ', err.message);
-                res.status(401).json(err);
+                console.log('[db.getInfoData] ', err.message);
+                return res.status(401).json(err);
             } else {
-                res.status(201).json(data);
+                return res.status(201).json(data);
             }
         });
 
     },
 
-    getInfoMes : function (req,res) {
+    getInfoAno : function (req,res) {
 
-        db.list({include_docs:true},function(err, data) {
-            if(err){
-                return console.log('[getInfoMes] ', err.message);
-                res.status(500);
+        var ano = new Date().getFullYear().toString();
+
+        var query = {
+            "selector": {
+                "dateText": {
+                    "$regex": ano
+                }
+            },
+            "fields": ["dateText","_id"]
+        };
+
+        db.index( {dateText: 'dateText', type:'json', index:{fields:['dateText']}});
+        db.find(query, function(err, data) {
+
+            if (err) {
+                console.log('[db.getInfoAno] ', err.message);
+                return res.status(401).json(err);
+            } else {
+                return res.status(201).json(data);
             }
-            res.status(200).json(data);
         });
-
     }
 
 };

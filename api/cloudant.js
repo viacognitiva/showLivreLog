@@ -110,6 +110,44 @@ var cloudant = {
             });
 
         }
+    },
+
+    getInfoData : function (req,res) {
+
+        var dataParam = new Date(req.params.data);
+        var data = (dataParam.getMonth() + 1) + '/' + dataParam.getDate() + '/' + dataParam.getFullYear();
+        //var data = '7/27/2018';
+
+        var query = {
+            "selector": {
+                "dateText": {"$gte" : data}
+            },
+            "fields": ["dateText","_id"]
+        };
+
+        db.index( {dateText: 'dateText', type:'json', index:{fields:['dateText']}});
+        db.find(query, function(err, data) {
+
+            if (err) {
+                return console.log('[db.getInfoData] ', err.message);
+                res.status(401).json(err);
+            } else {
+                res.status(201).json(data);
+            }
+        });
+
+    },
+
+    getInfoMes : function (req,res) {
+
+        db.list({include_docs:true},function(err, data) {
+            if(err){
+                return console.log('[getInfoMes] ', err.message);
+                res.status(500);
+            }
+            res.status(200).json(data);
+        });
+
     }
 
 };

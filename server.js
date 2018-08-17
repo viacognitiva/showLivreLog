@@ -43,6 +43,14 @@ app.post('/api/conversation/treinamento/status',function (req, res) {
     cloudant.atualizaStatusTreinamento(req, res);
 });
 
+app.get('/api/conversation/getInfoData/:data', function(req, res) {
+    cloudant.getInfoData(req, res);
+});
+
+app.get('/api/conversation/getInfoMes', function(req, res) {
+    cloudant.getInfoMes(req, res);
+});
+
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });

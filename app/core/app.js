@@ -7,12 +7,14 @@
         'app.login',
         'app.chat',
         'app.outros',
+        'app.reports',
         'app.filtersC',
         'app.filtersT',
         'app.nav.header',
         'app.nav.menu',
         'app.nav.footer',
         'app.modal',
-        'app.directives.divSize'
+        'app.directives.divSize',
+        'app.module.chart'
     ]);
 })();

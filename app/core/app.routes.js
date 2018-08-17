@@ -109,6 +109,24 @@
                     }
                 }
             })
+            .state('root.rel', {
+                url: 'relatorio',
+                restrictions: {
+                    ensureAuthenticated: true
+                },
+                data: {
+                    title: 'Relatórios',
+                    breadcrumb: 'Relatórios',
+                    caminho: '/relatorio'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'core/reports/report.html',
+                        controller: 'reportController',
+                        controllerAs: 'RC'
+                    }
+                }
+            })
 
         };
 

@@ -21,6 +21,7 @@ var cloudantDB = Cloudant({url:cloudant_url, account:user, password:password});
 db = cloudantDB.db.use(process.env.CLOUDANT_DB);
 dbOutros = cloudantDB.db.use(process.env.CLOUDANT_DBTREINO);
 dbUser = cloudantDB.db.use(process.env.CLOUDANT_DBUSER);
+dbLogin = cloudantDB.db.use(process.env.CLOUDANT_DBLOGIN);
 
 var cloudant = {
 
@@ -37,7 +38,7 @@ var cloudant = {
 
         var query = { selector: { nome: req.body.username , senha: req.body.password}};
 
-        dbUser.find(query, function(err, data) {
+        dbLogin.find(query, function(err, data) {
             if (err) {
                 return console.log('error ao buscar usuario', err.message);
             }
@@ -50,6 +51,18 @@ var cloudant = {
         db.list({include_docs:true},function(err, data) {
             if(err){
                 return console.log('[getChat] ', err.message);
+                res.status(500);
+            }
+            res.status(200).json(data);
+        });
+
+    },
+
+    getUsuarios : function (req, res){
+
+        dbUser.list({include_docs:true},function(err, data) {
+            if(err){
+                return console.log('[getOutros] ', err.message);
                 res.status(500);
             }
             res.status(200).json(data);

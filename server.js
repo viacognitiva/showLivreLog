@@ -15,6 +15,10 @@ app.get('/api/conversation/outros', function(req, res) {
     cloudant.getOutros(req, res);
 });
 
+app.get('/api/conversation/usuarios', function(req, res) {
+    cloudant.getUsuarios(req, res);
+});
+
 app.get('/api/conversation/entities', function(req, res) {
     logconversation.getEntidades(req, res);
 });

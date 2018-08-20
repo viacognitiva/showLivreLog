@@ -11,6 +11,8 @@
         $urlRouterProvider.when('/', '/chat/list');
         $urlRouterProvider.when('/chat', '/chat/list');
         $urlRouterProvider.when('/chat/', '/chat/list');
+        $urlRouterProvider.when('/user', '/user/list');
+        $urlRouterProvider.when('/user/', '/user/list');
         $urlRouterProvider.when('/outros', '/outros/list');
         $urlRouterProvider.when('/outros/', '/outros/list');
         $urlRouterProvider.when('/report', '/report/list');
@@ -81,6 +83,32 @@
                         templateUrl: 'core/chat/chat.html',
                         controller: 'chatController',
                         controllerAs: 'CC'
+                    }
+                }
+            })
+            .state('root.user', {
+                abstract: true,
+                url: 'user',
+                data: {
+                    title: 'Usuários',
+                    breadcrumb: 'Usuários'
+                }
+            })
+            .state('root.user.list', {
+                url: '/list',
+                restrictions: {
+                    ensureAuthenticated: true
+                },
+                data: {
+                    title: 'Usuários',
+                    breadcrumb: 'Usuários',
+                    caminho: '/user/list'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'core/user/user.html',
+                        controller: 'userController',
+                        controllerAs: 'UC'
                     }
                 }
             })

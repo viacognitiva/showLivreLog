@@ -31,7 +31,7 @@
 
             vm.items = [];
 
-            vm.sortType     = 'name';
+            vm.sortType     = 'data';
             vm.sortReverse  = true;
 
             $rootScope.totalChat = 0;

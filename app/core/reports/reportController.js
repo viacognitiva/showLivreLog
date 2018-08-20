@@ -73,6 +73,7 @@
                 };
 
                 vm.barDataDia = barDataDia;
+                vm.qtdHorasDia =reportService.getQdtHorasDia();
 
             });
 
@@ -93,6 +94,7 @@
                 };
 
                 vm.barDataAno = barDataAno;
+                vm.qtdHorasMes = reportService.getQtdHorasMes();
 
             });
         }

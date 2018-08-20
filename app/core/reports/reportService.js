@@ -8,9 +8,15 @@
 
     function reportService($http) {
 
+        var qtdHorasDia = 0;
+        var qtdHorasMes = 0;
+
+
         return {
             getDia: getDia,
-            getAno: getAno
+            getAno: getAno,
+            getQdtHorasDia: getQdtHorasDia,
+            getQtdHorasMes: getQtdHorasMes
         };
 
         function getDia(dataBusca) {
@@ -31,6 +37,7 @@
                     for(i = 0; i < docs.length;i++){
                         var horaTmp = new Date(docs[i].dateText).getHours();
                         retorno[horaTmp] = retorno[horaTmp] + 1;
+                        qtdHorasDia = qtdHorasDia + 1
                     }
                 }
                 return retorno;
@@ -40,7 +47,7 @@
                 console.log(error);
                 return error;
             }
-        };
+        }
 
         function getAno() {
 
@@ -55,11 +62,17 @@
 
                 var docs = response.data.docs;
                 var i = 0;
+                var mesAtual = new Date().getMonth();
 
                 if(docs.length > 0){
                     for(i = 0; i < docs.length;i++){
                         var horaTmp = new Date(docs[i].dateText).getMonth();
                         retorno[horaTmp] = retorno[horaTmp] + 1;
+
+                        if (mesAtual == horaTmp){
+                            qtdHorasMes = qtdHorasMes + 1;
+                       }
+
                     }
                 }
 
@@ -70,6 +83,14 @@
                 console.log(error);
                 return error;
             }
+        }
+
+        function getQdtHorasDia(){
+            return qtdHorasDia;
+        }
+
+        function getQtdHorasMes(){
+            return qtdHorasMes;
         }
     }
 })();

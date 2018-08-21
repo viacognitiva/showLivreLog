@@ -155,3 +155,40 @@ th div{
 .md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover{
     background-color: rgba(0, 0, 0, 0.2);
 }
+.resultado{
+    font-size: 19px;
+    margin: 0 0 10px 100px;
+}
+.resultado:last-child{
+    margin:0 0 0 100px
+}
+.resultado span{
+    display: inline-block;
+    padding:4px 10px;
+    margin-right:5px;
+    font-size: 20px;
+    border-radius: 3px;
+    text-align: center;
+}
+.espaco{
+    margin-bottom:15px
+}
+.fundoCinza {
+    background-color: #505050;
+    color: #ffffff;
+}
+.fundoVerde{
+    background-color: #007774;
+    color: #ffffff;
+}
+.fundoAzul{
+    background-color: #264f76;
+    color: #ffffff;
+}
+.fundoCinzaClaro{
+    background-color:#efefef;
+}
+.widget {
+    border-radius: 5px;
+    padding: 1px 20px 15px 20px;
+}

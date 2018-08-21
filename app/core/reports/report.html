@@ -1,23 +1,23 @@
 <div class="box-body" cg-busy="{promise:myPromise,message:'Carregando',backdrop:true,templateUrl:'core/navigation/loading.html',delay:300,minDuration:1000}">
 
-    <div class="row">
-
+    <div class="row espaco">
+        <div class="col-lg-2"></div>
         <div class="col-lg-3">
             <div class="ibox float-e-margins">
                 <div class="widget lazur-bg no-padding">
-                    <div class="p-m">
-                        <h1 class="m-xs">Últimas 24 horas</h1>
-
-                        <h3 class="font-bold no-margins">
-                            {{RC.qtdHorasDia}}
-                        </h3>
-
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="widget fundoCinza text-center">
+                                <h1>{{RC.qtdHorasDia}}</h1>
+                                <h3>Interações<br>nas últimas 24 horas</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-8">
+        <div class="col-lg-5">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div>
@@ -26,27 +26,26 @@
                 </div>
             </div>
         </div>
-
+        <div class="col-lg-2"></div>
     </div>
 
     <div class="row">
-
-        <div class="col-lg-3">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-4">
             <div class="ibox float-e-margins">
                 <div class="widget lazur-bg no-padding">
-                    <div class="p-m">
-                        <h1 class="m-xs">Totais</h1>
-
-                        Chat: {{totalChat}}<br>
-                        Interações: {{totalInter}}<br>
-                        Mês:{{RC.qtdHorasMes}}
-
+                    <div class="row">
+                        <div class="col-lg-9 widget fundoCinzaClaro">
+                            <div class="text-center"><h1>Totais</h1></div>
+                            <div class="resultado"><span class="fundoVerde">{{totalChat}}</span> Chat</div>
+                            <div class="resultado"><span class="fundoCinza">{{totalInter}}</span> Interações</div>
+                            <div class="resultado"><span class="fundoAzul">{{RC.qtdHorasMes}}</span> Mês</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-8">
+        <div class="col-lg-4">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div>
@@ -55,7 +54,7 @@
                 </div>
             </div>
         </div>
-
+        <div class="col-lg-2"></div>
     </div>
 
 </div>

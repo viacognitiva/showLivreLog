@@ -10,6 +10,7 @@
 
         var qtdHorasDia = 0;
         var qtdHorasMes = 0;
+        var config = {headers : {'Content-Type': 'application/json; charset=utf-8'}};
 
 
         return {
@@ -21,8 +22,8 @@
 
         function getDia(dataBusca) {
 
+            qtdHorasDia = 0;
             var retorno = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-            var config = {headers : {'Content-Type': 'application/json; charset=utf-8'}}
 
             return $http.get('/api/conversation/getInfoData/'+ dataBusca,config)
                 .then(retornaData)
@@ -51,8 +52,8 @@
 
         function getAno() {
 
+            qtdHorasMes = 0;
             var retorno = [0,0,0,0,0,0,0,0,0,0,0,0];
-            var config = {headers : {'Content-Type': 'application/json; charset=utf-8'}}
 
             return $http.get('/api/conversation/getInfoAno',config)
                 .then(retornaData)
@@ -83,6 +84,34 @@
                 console.log(error);
                 return error;
             }
+        }
+
+        function getIntent() {
+
+
+
+            return $http.get('/api/conversation/getInfo',config)
+                .then(retornaInfo)
+                .catch(errorInfo);
+
+            function retornaInfo(response) {
+
+                var docs = response.data.docs;
+
+                if(docs.length > 0) {
+                    for (var i = 0; i < docs.length; i++) {
+
+
+                    }
+                }
+
+            }
+
+            function errorInfo(error) {
+                console.log(error);
+                return error;
+            }
+
         }
 
         function getQdtHorasDia(){

@@ -55,6 +55,10 @@ app.get('/api/conversation/getInfoAno', function(req, res) {
     cloudant.getInfoAno(req, res);
 });
 
+app.get('/api/conversation/getInfo', function(req, res) {
+    cloudant.getInfo(req, res);
+});
+
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
 });

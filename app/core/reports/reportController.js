@@ -54,6 +54,10 @@
 
         buscar();
 
+        function buscar(){
+            $scope.myPromise = getJson();
+        }
+
         function getJson() {
             reportService.getDia(new Date()).then(function(dados) {
 
@@ -97,10 +101,6 @@
                 vm.qtdHorasMes = reportService.getQtdHorasMes();
 
             });
-        }
-
-        function buscar(){
-            $scope.myPromise = getJson();
         }
 
         vm.barDataDia = barDataDia;

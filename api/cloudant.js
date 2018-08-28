@@ -129,7 +129,6 @@ var cloudant = {
 
         var dataParam = new Date(req.params.data);
         var data = (dataParam.getMonth() + 1) + '/' + dataParam.getDate() + '/' + dataParam.getFullYear();
-        //var data = '7/27/2018';
 
         var query = {
             "selector": {
@@ -174,6 +173,19 @@ var cloudant = {
                 return res.status(201).json(data);
             }
         });
+    },
+
+    getInfo : function (req,res) {
+
+        db.list({include_docs:true},function(err, data) {
+            if(err){
+                return console.log('[getInfoIntent] ', err.message);
+                res.status(500);
+            }
+
+            res.status(200).json(data);
+        });
+
     }
 
 };

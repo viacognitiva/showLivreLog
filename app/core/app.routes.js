@@ -7,8 +7,8 @@
 
     function config($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.when('', '/chat/list');
-        $urlRouterProvider.when('/', '/chat/list');
+        $urlRouterProvider.when('', '/report/list');
+        $urlRouterProvider.when('/', '/report/list');
         $urlRouterProvider.when('/chat', '/chat/list');
         $urlRouterProvider.when('/chat/', '/chat/list');
         $urlRouterProvider.when('/user', '/user/list');

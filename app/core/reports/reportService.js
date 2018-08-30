@@ -10,14 +10,17 @@
 
         var qtdHorasDia = 0;
         var qtdHorasMes = 0;
+        var qtdHorasUser = 0;
         var config = {headers : {'Content-Type': 'application/json; charset=utf-8'}};
 
 
         return {
             getDia: getDia,
             getAno: getAno,
+            getUser: getUser,
             getQdtHorasDia: getQdtHorasDia,
-            getQtdHorasMes: getQtdHorasMes
+            getQtdHorasMes: getQtdHorasMes,
+            getQtdHorasUser: getQtdHorasUser
         };
 
         function getDia(dataBusca) {
@@ -86,6 +89,41 @@
             }
         }
 
+        function getUser(dataBusca) {
+
+            qtdHorasUser = 0;
+            var retorno = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+            return $http.get('/api/conversation/getInfoUser/'+ dataBusca,config)
+                .then(retornaData)
+                .catch(errorData);
+
+            function retornaData(response) {
+
+                var docs = response.data.docs;
+                var i = 0;
+
+                console.log('Qtd.:' + docs.length);
+
+                if(docs.length > 0){
+                    for(i = 0; i < docs.length;i++){
+                        var horaTmp = new Date(docs[i].data).getHours();
+                        retorno[horaTmp] = retorno[horaTmp] + 1;
+                        qtdHorasUser = qtdHorasUser + 1
+                    }
+                }
+                return retorno;
+            }
+
+            function errorData(error) {
+                console.log(error);
+                return error;
+            }
+
+
+
+        }
+
         function getIntent() {
 
 
@@ -115,11 +153,15 @@
         }
 
         function getQdtHorasDia(){
-            return qtdHorasDia;
+            return qtdHorasDia
         }
 
         function getQtdHorasMes(){
-            return qtdHorasMes;
+            return qtdHorasMes
+        }
+
+        function getQtdHorasUser() {
+            return qtdHorasUser
         }
     }
 })();

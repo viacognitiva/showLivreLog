@@ -55,6 +55,10 @@ app.get('/api/conversation/getInfoAno', function(req, res) {
     cloudant.getInfoAno(req, res);
 });
 
+app.get('/api/conversation/getInfoUser/:data', function(req, res) {
+    cloudant.getInfoUser(req, res);
+});
+
 app.get('/api/conversation/getInfo', function(req, res) {
     cloudant.getInfo(req, res);
 });

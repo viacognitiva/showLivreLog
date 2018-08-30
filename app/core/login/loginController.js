@@ -23,7 +23,7 @@
                     if(response.status==200){
                         if(response.data.user.name!=''){
                             $localStorage.token = response.data.token;
-                            $location.path('/chat');
+                            $location.path('/report');
                         }
                     }
                 },

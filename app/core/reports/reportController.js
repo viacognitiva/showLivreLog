@@ -36,6 +36,13 @@
             ]
         };
 
+        var dataTeste = new Date();
+        console.log('dataTeste: ' + dataTeste);
+        var dataNumber =  dataTeste.valueOf();
+        console.log('dataTeste (numérico): ' + dataNumber);
+        var dataTeste = new Date(dataNumber);
+        console.log('dataTeste (retorno numérico): ' + dataTeste);
+
         var barDataAno = {
             labels: ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"],
             datasets: [
@@ -59,7 +66,7 @@
         }
 
         function getJson() {
-            reportService.getDia(new Date()).then(function(dados) {
+            reportService.getUser(new Date()).then(function(dados) {
 
                 barDataDia = {
                     labels: ["00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00",

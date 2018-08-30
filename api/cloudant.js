@@ -150,6 +150,31 @@ var cloudant = {
 
     },
 
+    getInfoUser : function (req,res) {
+
+        var dataParam = new Date(req.params.data);
+        var data = (dataParam.getMonth() + 1) + '/' + dataParam.getDate() + '/' + dataParam.getFullYear();
+
+        var query = {
+            "selector": {
+                "data": {"$gte" : data}
+            },
+            "fields": ["data","_id"]
+        };
+
+        dbUser.index( {data: 'data', type:'json', index:{fields:['data']}});
+        dbUser.find(query, function(err, data) {
+
+            if (err) {
+                console.log('[db.getInfoUser] ', err.message);
+                return res.status(401).json(err);
+            } else {
+                return res.status(201).json(data);
+            }
+        });
+
+    },
+
     getInfoAno : function (req,res) {
 
         var ano = new Date().getFullYear().toString();

@@ -22,6 +22,7 @@ db = cloudantDB.db.use(process.env.CLOUDANT_DB);
 dbOutros = cloudantDB.db.use(process.env.CLOUDANT_DBTREINO);
 dbUser = cloudantDB.db.use(process.env.CLOUDANT_DBUSER);
 dbLogin = cloudantDB.db.use(process.env.CLOUDANT_DBLOGIN);
+dbAval = cloudantDB.db.use(process.env.CLOUDANT_AVAL);
 
 var cloudant = {
 
@@ -150,29 +151,30 @@ var cloudant = {
 
     },
 
-    getInfoUser : function (req,res) {
+    getInfoMes : function (req,res) {
 
-        var dataParam = new Date(req.params.data);
-        var data = (dataParam.getMonth() + 1) + '/' + dataParam.getDate() + '/' + dataParam.getFullYear();
+        var ano = new Date().getFullYear().toString();
+        var mesParam = new Date(req.params.mes);
 
         var query = {
             "selector": {
-                "data": {"$gte" : data}
+                "dateText": {
+                    "$regex": '/' + mesParam + '/' + ano
+                }
             },
-            "fields": ["data","_id"]
+            "fields": ["dateText","_id"]
         };
 
-        dbUser.index( {data: 'data', type:'json', index:{fields:['data']}});
-        dbUser.find(query, function(err, data) {
+        db.index( {dateText: 'dateText', type:'json', index:{fields:['dateText']}});
+        db.find(query, function(err, data) {
 
             if (err) {
-                console.log('[db.getInfoUser] ', err.message);
+                console.log('[db.getInfoMes] ', err.message);
                 return res.status(401).json(err);
             } else {
                 return res.status(201).json(data);
             }
         });
-
     },
 
     getInfoAno : function (req,res) {
@@ -200,6 +202,31 @@ var cloudant = {
         });
     },
 
+    getInfoUser : function (req,res) {
+
+        var dataParam = new Date(req.params.data);
+        var data = (dataParam.getMonth() + 1) + '/' + dataParam.getDate() + '/' + dataParam.getFullYear();
+
+        var query = {
+            "selector": {
+                "data": {"$gte" : data}
+            },
+            "fields": ["data","_id"]
+        };
+
+        dbUser.index( {data: 'data', type:'json', index:{fields:['data']}});
+        dbUser.find(query, function(err, data) {
+
+            if (err) {
+                console.log('[db.getInfoUser] ', err.message);
+                return res.status(401).json(err);
+            } else {
+                return res.status(201).json(data);
+            }
+        });
+
+    },
+
     getInfo : function (req,res) {
 
         db.list({include_docs:true},function(err, data) {
@@ -208,6 +235,18 @@ var cloudant = {
                 res.status(500);
             }
 
+            res.status(200).json(data);
+        });
+
+    },
+
+    getInfoAval : function (req,res) {
+
+        dbAval.list({include_docs:true},function(err, data) {
+            if(err){
+                return console.log('[getInfoIntent] ', err.message);
+                res.status(500);
+            }
             res.status(200).json(data);
         });
 

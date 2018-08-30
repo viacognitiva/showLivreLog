@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('app.reports', ['ngAnimate','ngSanitize','ui.bootstrap','cgBusy','app.reportService'])
+    angular.module('app.reports', ['ngAnimate','ngSanitize','ui.bootstrap','cgBusy','app.reportService','app.chatService'])
         .controller('reportController', reportController);
 
-    reportController.$inject = ['$rootScope','$scope','$log','$http','$uibModal','$window','reportService'];
+    reportController.$inject = ['$rootScope','$scope','$log','$http','$uibModal','$window','reportService','chatService'];
 
-    function reportController($rootScope,$scope,$log,$http,$uibModal,$window,reportService) {
+    function reportController($rootScope,$scope,$log,$http,$uibModal,$window,reportService,chatService) {
 
         var vm = this;
 
@@ -36,14 +36,7 @@
             ]
         };
 
-        var dataTeste = new Date();
-        console.log('dataTeste: ' + dataTeste);
-        var dataNumber =  dataTeste.valueOf();
-        console.log('dataTeste (numérico): ' + dataNumber);
-        var dataTeste = new Date(dataNumber);
-        console.log('dataTeste (retorno numérico): ' + dataTeste);
-
-        var barDataAno = {
+         var barDataAno = {
             labels: ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"],
             datasets: [
                 {
@@ -66,7 +59,7 @@
         }
 
         function getJson() {
-            reportService.getUser(new Date()).then(function(dados) {
+            reportService.getUserDia(new Date()).then(function(dados) {
 
                 barDataDia = {
                     labels: ["00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00",
@@ -84,11 +77,11 @@
                 };
 
                 vm.barDataDia = barDataDia;
-                vm.qtdHorasDia =reportService.getQdtHorasDia();
+                vm.qtdAcessoDia =reportService.getQtdAcessoUserDia();
 
             });
 
-            return reportService.getAno().then(function(dados) {
+            reportService.getAno().then(function(dados) {
 
                 barDataAno = {
                     labels: ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"],
@@ -105,8 +98,13 @@
                 };
 
                 vm.barDataAno = barDataAno;
-                vm.qtdHorasMes = reportService.getQtdHorasMes();
+                vm.qtdAcessoMes = reportService.getQtdAcessoMesAtual();
 
+            });
+
+            return chatService.getChat().then(function() {
+                $rootScope.totalInter = chatService.retornaQdt();
+                $rootScope.totalChat = chatService.retornaQdtChat();
             });
         }
 

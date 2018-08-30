@@ -8,24 +8,29 @@
 
     function reportService($http) {
 
-        var qtdHorasDia = 0;
-        var qtdHorasMes = 0;
-        var qtdHorasUser = 0;
-        var config = {headers : {'Content-Type': 'application/json; charset=utf-8'}};
+        var qtdAcessoDia = 0;
+        var qtdAcessoMes = 0;
+        var qtdAcessoAno = 0;
+        var qtdAcessoMesAtual = 0;
+        var qtdAcessoUserDia = 0;
 
+        var config = {headers : {'Content-Type': 'application/json; charset=utf-8'}};
 
         return {
             getDia: getDia,
+            getMes: getMes,
             getAno: getAno,
-            getUser: getUser,
-            getQdtHorasDia: getQdtHorasDia,
-            getQtdHorasMes: getQtdHorasMes,
-            getQtdHorasUser: getQtdHorasUser
+            getUserDia: getUserDia,
+            getQdtAcessoDia: getQdtAcessoDia,
+            getQtdAcessosMes: getQtdAcessoMes,
+            getQtdAcessoAno: getQtdAcessoAno,
+            getQtdAcessoMesAtual: getQtdAcessoMesAtual,
+            getQtdAcessoUserDia: getQtdAcessoUserDia
         };
 
         function getDia(dataBusca) {
 
-            qtdHorasDia = 0;
+            qtdAcessoDia = 0;
             var retorno = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
             return $http.get('/api/conversation/getInfoData/'+ dataBusca,config)
@@ -41,7 +46,7 @@
                     for(i = 0; i < docs.length;i++){
                         var horaTmp = new Date(docs[i].dateText).getHours();
                         retorno[horaTmp] = retorno[horaTmp] + 1;
-                        qtdHorasDia = qtdHorasDia + 1
+                        qtdAcessoDia = qtdAcessoDia + 1
                     }
                 }
                 return retorno;
@@ -53,28 +58,64 @@
             }
         }
 
+        function getMes(mesBusca) {
+
+            qtdAcessoMes = 0;
+            var retorno = [];
+
+            return $http.get('/api/conversation/getInfoMes/' + mesBusca,config)
+                .then(procRetorno)
+                .catch(procErro);
+
+            function procRetorno(response) {
+
+                var docs = response.data.docs;
+                var i = 0;
+                var mesTmp = 0;
+
+                if(docs.length > 0){
+                    for(i = 0; i < docs.length;i++){
+                        mesTmp = new Date(docs[i].dateText).getMonth();
+                        retorno[mesTmp] = retorno[mesTmp] + 1;
+                        qtdAcessoMes = qtdAcessoMes + 1
+                    }
+                }
+                return retorno;
+            }
+
+            function procErro(error) {
+                console.log(error);
+                return error;
+            }
+        }
+
         function getAno() {
 
-            qtdHorasMes = 0;
+            qtdAcessoAno = 0;
+            qtdAcessoMesAtual = 0;
             var retorno = [0,0,0,0,0,0,0,0,0,0,0,0];
 
             return $http.get('/api/conversation/getInfoAno',config)
-                .then(retornaData)
-                .catch(errorData);
+                .then(procRetorno)
+                .catch(procErro);
 
-            function retornaData(response) {
+            function procRetorno(response) {
 
                 var docs = response.data.docs;
                 var i = 0;
                 var mesAtual = new Date().getMonth();
+                var mesRet = 0;
 
                 if(docs.length > 0){
-                    for(i = 0; i < docs.length;i++){
-                        var horaTmp = new Date(docs[i].dateText).getMonth();
-                        retorno[horaTmp] = retorno[horaTmp] + 1;
 
-                        if (mesAtual == horaTmp){
-                            qtdHorasMes = qtdHorasMes + 1;
+                    for(i = 0; i < docs.length;i++){
+
+                        mesRet = new Date(docs[i].dateText).getMonth();
+                        retorno[mesRet] = retorno[mesRet] + 1;
+                        qtdAcessoAno = qtdAcessoAno + 1;
+
+                        if (mesAtual == mesRet){
+                            qtdAcessoMesAtual = qtdAcessoMesAtual + 1;
                        }
 
                     }
@@ -83,15 +124,15 @@
                 return retorno;
             }
 
-            function errorData(error) {
+            function procErro(error) {
                 console.log(error);
                 return error;
             }
         }
 
-        function getUser(dataBusca) {
+        function getUserDia(dataBusca) {
 
-            qtdHorasUser = 0;
+            qtdAcessoUserDia = 0;
             var retorno = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
             return $http.get('/api/conversation/getInfoUser/'+ dataBusca,config)
@@ -103,13 +144,11 @@
                 var docs = response.data.docs;
                 var i = 0;
 
-                console.log('Qtd.:' + docs.length);
-
                 if(docs.length > 0){
                     for(i = 0; i < docs.length;i++){
                         var horaTmp = new Date(docs[i].data).getHours();
                         retorno[horaTmp] = retorno[horaTmp] + 1;
-                        qtdHorasUser = qtdHorasUser + 1
+                        qtdAcessoUserDia = qtdAcessoUserDia + 1
                     }
                 }
                 return retorno;
@@ -119,14 +158,9 @@
                 console.log(error);
                 return error;
             }
-
-
-
         }
 
         function getIntent() {
-
-
 
             return $http.get('/api/conversation/getInfo',config)
                 .then(retornaInfo)
@@ -152,16 +186,24 @@
 
         }
 
-        function getQdtHorasDia(){
-            return qtdHorasDia
+        function getQdtAcessoDia(){
+            return qtdAcessoDia
         }
 
-        function getQtdHorasMes(){
-            return qtdHorasMes
+        function getQtdAcessoMes(){
+            return qtdAcessoMes
         }
 
-        function getQtdHorasUser() {
-            return qtdHorasUser
+        function getQtdAcessoAno(){
+            return qtdAcessoAno
+        }
+
+        function getQtdAcessoMesAtual(){
+            return qtdAcessoMesAtual
+        }
+
+        function getQtdAcessoUserDia() {
+            return qtdAcessoUserDia
         }
     }
 })();

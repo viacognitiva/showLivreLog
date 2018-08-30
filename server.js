@@ -51,6 +51,10 @@ app.get('/api/conversation/getInfoData/:data', function(req, res) {
     cloudant.getInfoData(req, res);
 });
 
+app.get('/api/conversation/getInfoMes/:mes', function(req, res) {
+    cloudant.getInfoMes(req, res);
+});
+
 app.get('/api/conversation/getInfoAno', function(req, res) {
     cloudant.getInfoAno(req, res);
 });
@@ -59,8 +63,16 @@ app.get('/api/conversation/getInfoUser/:data', function(req, res) {
     cloudant.getInfoUser(req, res);
 });
 
+app.get('/api/conversation/getInfoAval', function(req, res) {
+    cloudant.getInfoAval(req, res);
+});
+
 app.get('/api/conversation/getInfo', function(req, res) {
     cloudant.getInfo(req, res);
+});
+
+app.get('/api/conversation/getDetalhe/:id', function(req, res) {
+    cloudant.get(req, res);
 });
 
 app.listen(app.get('port'), function() {

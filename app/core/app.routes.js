@@ -16,6 +16,8 @@
         $urlRouterProvider.when('/outros', '/outros/list');
         $urlRouterProvider.when('/outros/', '/outros/list');
         $urlRouterProvider.when('/report', '/report/list');
+        $urlRouterProvider.when('/aval/', '/aval/list');
+        $urlRouterProvider.when('/aval', '/aval/list');
 
         $stateProvider
             .state('login', {
@@ -161,6 +163,32 @@
                         templateUrl: 'core/reports/report.html',
                         controller: 'reportController',
                         controllerAs: 'RC'
+                    }
+                }
+            })
+            .state('root.aval', {
+                abstract: true,
+                url: 'aval',
+                data: {
+                    title: 'Avaliações',
+                    breadcrumb: 'Avaliações'
+                }
+            })
+            .state('root.aval.list', {
+                url: '/list',
+                restrictions: {
+                    ensureAuthenticated: true
+                },
+                data: {
+                    title: 'Avaliações',
+                    breadcrumb: 'Avaliações',
+                    caminho: '/aval/list'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'core/aval/aval.html',
+                        controller: 'avalController',
+                        controllerAs: 'AC'
                     }
                 }
             })

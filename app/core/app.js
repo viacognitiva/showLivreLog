@@ -9,6 +9,7 @@
         'app.user',
         'app.outros',
         'app.reports',
+        'app.aval',
         'app.filtersC',
         'app.filtersT',
         'app.nav.header',

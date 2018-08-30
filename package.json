@@ -17,6 +17,7 @@
     "express-session": "^1.15.6",
     "helmet": "^3.9.0",
     "jsonwebtoken": "^8.1.1",
+    "npm": "^6.4.0",
     "watson-developer-cloud": "^3.7.0"
   },
   "repository": {

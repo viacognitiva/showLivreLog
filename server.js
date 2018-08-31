@@ -71,8 +71,8 @@ app.get('/api/conversation/getInfo', function(req, res) {
     cloudant.getInfo(req, res);
 });
 
-app.get('/api/conversation/getDetalhe/:id', function(req, res) {
-    cloudant.get(req, res);
+app.get('/api/conversation/getInfoChat/:id', function(req, res) {
+    cloudant.getInfoChat(req, res);
 });
 
 app.listen(app.get('port'), function() {

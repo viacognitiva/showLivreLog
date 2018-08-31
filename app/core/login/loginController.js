@@ -28,6 +28,7 @@
                     }
                 },
                 function(erro){
+                    console.log(erro);
                     $scope.errorMessage = "Erro: " + erro.data.message;
                 }
             );

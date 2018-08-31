@@ -16,6 +16,7 @@
         'app.nav.menu',
         'app.nav.footer',
         'app.modal',
+        'app.modal.det',
         'app.directives.divSize',
         'app.module.chart'
     ]);

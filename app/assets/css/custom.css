@@ -192,3 +192,6 @@ th div{
     border-radius: 5px;
     padding: 1px 20px 15px 20px;
 }
+.tabelaDetalhe .modal-lg{
+    width: 1000px !important;
+}

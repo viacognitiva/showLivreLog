@@ -250,7 +250,31 @@ var cloudant = {
             res.status(200).json(data);
         });
 
-    }
+    },
+
+    getInfoChat : function (req,res) {
+
+        var idParam = req.params.id;
+
+        var query = {
+            "selector": {
+                "_id": {
+                    "$regex": 'doc_' + idParam
+                }
+            }
+        };
+
+        db.index( {_id: 'dateText', type:'json', index:{fields:['dateText']}});
+        db.find(query, function(err, data) {
+
+            if (err) {
+                console.log('[db.getInfoMes] ', err.message);
+                return res.status(401).json(err);
+            } else {
+                return res.status(201).json(data);
+            }
+        });
+    },
 
 };
 

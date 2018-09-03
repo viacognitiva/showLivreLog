@@ -27,9 +27,9 @@
                     </th>
                     <th style="width: 13%">respostas
                         <div>
-                            <a href="" ng-click="AC.sort_by('respostas')">Gostou das respostas?
-                                <span ng-show="AC.showDown('respostas')" class="fa fa-caret-down"></span>
-                                <span ng-show="AC.showUp('respostas')" class="fa fa-caret-up"></span>
+                            <a href="" ng-click="AC.sort_by('resposta')">Gostou das respostas?
+                                <span ng-show="AC.showDown('resposta')" class="fa fa-caret-down"></span>
+                                <span ng-show="AC.showUp('resposta')" class="fa fa-caret-up"></span>
                             </a>
                         </div>
                     </th>
@@ -73,7 +73,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-ng-repeat="item in AC.items | orderBy:UC.sortType:UC.sortReverse | filter:searchFish" class="repeat-animation">
+                <tr data-ng-repeat="item in AC.items | orderBy:AC.sortType:AC.sortReverse | filter:searchFish" class="repeat-animation">
                     <td>{{item.nome}}</td>
                     <td>{{item.resposta}}</td>
                     <td>{{item.interface}}</td>

@@ -13,14 +13,16 @@
         vm.sort_by  = sort_by;
         vm.showDown = showDown;
         vm.showUp = showUp;
+        vm.detConversa = detConversa;
 
         vm.items = [];
 
-        vm.sortType     = 'nome';
+        vm.sortType     = 'data';
         vm.sortReverse  = true;
         $rootScope.showInfo = false;
 
         buscar();
+        //sort_by('data');
 
         function buscar() {
             $scope.myPromise = avalService.getDados().then(function(data) {
@@ -59,7 +61,7 @@
                 });
 
             } else {
-                showAlert()
+                showAlert('Sem registros.','Viabot');
             }
 
         }
@@ -70,27 +72,31 @@
         }
 
         function showDown(newSortingOrder) {
-            return vm.sortType == newSortingOrder && !vm.sortReverse
+            return vm.sortType == newSortingOrder && !vm.sortReverse;
         }
 
         function showUp(newSortingOrder) {
-            return vm.sortType == newSortingOrder && vm.sortReverse
+            return vm.sortType == newSortingOrder && vm.sortReverse;
         }
 
-        function showAlert() {
+        function showAlert(texto, titulo) {
 
             $mdDialog.show(
                 $mdDialog.alert()
                     .parent(angular.element(document.querySelector('#popupContainer')))
                     .clickOutsideToClose(true)
-                    .title('viaBot')
-                    .textContent('Sem registros')
+                    .title(titulo)
+                    .textContent(texto)
                     .ariaLabel('Alert Dialog Demo')
                     .ok('OK')
                     .targetEvent('$event')
             );
 
 
+        }
+
+        function detConversa(item){
+            showAlert(item.comentarioFull,'Comentário');
         }
 
     }

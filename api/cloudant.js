@@ -51,8 +51,9 @@ var cloudant = {
 
         db.list({include_docs:true},function(err, data) {
             if(err){
-                return console.log('[getChat] ', err.message);
                 res.status(500);
+                return console.log('[getChat] ', err.message);
+                
             }
             res.status(200).json(data);
         });
@@ -63,8 +64,8 @@ var cloudant = {
 
         dbUser.list({include_docs:true},function(err, data) {
             if(err){
-                return console.log('[getOutros] ', err.message);
                 res.status(500);
+                return console.log('[getOutros] ', err.message);                
             }
             res.status(200).json(data);
         });
@@ -75,8 +76,8 @@ var cloudant = {
 
         dbOutros.list({include_docs:true},function(err, data) {
             if(err){
-                return console.log('[getOutros] ', err.message);
                 res.status(500);
+                return console.log('[getOutros] ', err.message);                
             }
             res.status(200).json(data);
         });
@@ -95,8 +96,8 @@ var cloudant = {
             db.find(query, function(err, data) {
 
                 if (err) {
-                    return console.log('[db.atualizaStatusTreinamento] ', err.message);
                     res.status(201).json(err);
+                    return console.log('[db.atualizaStatusTreinamento] ', err.message);
                 }else{
                     data.docs[0].treinado = true;
                     db.insert(data.docs[0], function(err, data) {
@@ -231,8 +232,8 @@ var cloudant = {
 
         db.list({include_docs:true},function(err, data) {
             if(err){
-                return console.log('[getInfoIntent] ', err.message);
                 res.status(500);
+                return console.log('[getInfoIntent] ', err.message);
             }
 
             res.status(200).json(data);
@@ -244,8 +245,8 @@ var cloudant = {
 
         dbAval.list({include_docs:true},function(err, data) {
             if(err){
-                return console.log('[getInfoIntent] ', err.message);
                 res.status(500);
+                return console.log('[getInfoIntent] ', err.message);
             }
             res.status(200).json(data);
         });

@@ -53,7 +53,7 @@
 
             function buscar() {
                 $scope.myPromise = getJson();
-            };
+            }
 
             function toggleSelection (id) {
 
@@ -72,20 +72,20 @@
                     vm.disableBtnTreinarIntencao = true;
                     vm.disableBtnTreinarEntidade = true;
                 }
-            };
+            }
 
             function sort_by(newSortingOrder) {
                 vm.sortReverse = (vm.sortType === newSortingOrder) ? !vm.sortReverse : false;
                 vm.sortType = newSortingOrder;
-            };
+            }
 
             function showDown(newSortingOrder) {
                 return vm.sortType == newSortingOrder && !vm.sortReverse
-            };
+            }
 
             function showUp(newSortingOrder) {
                 return vm.sortType == newSortingOrder && vm.sortReverse
-            };
+            }
 
             function modalEntidade(size) {
 
@@ -115,7 +115,7 @@
                 }).closed.then(function(){
                     buscar();
                 });
-            };
+            }
 
             function modalIntencao(size) {
 
@@ -145,7 +145,7 @@
                 }).closed.then(function(){
                     buscar();
                 });
-            };
+            }
 
         }
 

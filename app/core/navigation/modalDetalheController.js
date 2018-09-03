@@ -8,28 +8,33 @@
 
     function modalDetalheController($scope,$uibModalInstance,$http,valLista) {
 
-        var $ctrl           = this;
-        $ctrl.items         = valLista;
-        $ctrl.sortType      = 'msgUser';
-        $ctrl.sortReverse   = true;
+        var vm      = this;
+        vm.ok       = ok;
+        vm.sort_by  = sort_by;
+        vm.showDown = showDown;
+        vm.showUp   = showUp;
 
+        vm.items = valLista;
+        vm.sortReverse = true;
 
-        $ctrl.ok = function() {
+        sort_by('data');
+
+        function ok() {
             $uibModalInstance.close(false);
-        };
+        }
 
-        $ctrl.sort_by = function(newSortingOrder) {
-            $ctrl.sortReverse = ($ctrl.sortType === newSortingOrder) ? !$ctrl.sortReverse : false;
-            $ctrl.sortType = newSortingOrder;
-        };
+        function sort_by(newSortingOrder) {
+            vm.sortReverse = (vm.sortType === newSortingOrder) ? !vm.sortReverse : false;
+            vm.sortType = newSortingOrder;
+        }
 
-        $ctrl.showDown = function(newSortingOrder) {
-            return $ctrl.sortType == newSortingOrder && !$ctrl.sortReverse
-        };
+        function showDown(newSortingOrder) {
+            return vm.sortType == newSortingOrder && !vm.sortReverse;
+        }
 
-        $ctrl.showUp = function(newSortingOrder) {
-            return $ctrl.sortType == newSortingOrder && $ctrl.sortReverse
-        };
+        function showUp(newSortingOrder) {
+            return vm.sortType == newSortingOrder && vm.sortReverse;
+        }
 
     }
 

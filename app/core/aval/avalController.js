@@ -22,7 +22,7 @@
         $rootScope.showInfo = false;
 
         buscar();
-        //sort_by('data');
+        sort_by('data');
 
         function buscar() {
             $scope.myPromise = avalService.getDados().then(function(data) {

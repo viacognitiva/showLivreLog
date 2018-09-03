@@ -32,7 +32,7 @@
                     jsonParam.resposta = item.doc.gostou;
                     jsonParam.interface = item.doc.interface;
                     jsonParam.recomenda = item.doc.recomenda;
-                    jsonParam.comentario = item.doc.comentario.substring(0, 30);
+                    jsonParam.comentario = item.doc.comentario.substring(0, 40);
                     jsonParam.comentarioFull = item.doc.comentario;
                     jsonParam.data = $filter('date')(new Date(item.doc.data), "dd/MM/yyyy HH:mm:ss");
 

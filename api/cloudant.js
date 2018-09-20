@@ -1,8 +1,7 @@
 require('dotenv-safe').load();
 
 var Cloudant = require('@cloudant/cloudant');
-var cloudant_url = process.env.CLOUDANT_URL;
-var cloudantDB = Cloudant(cloudant_url);
+var cloudantDB = Cloudant(process.env.CLOUDANT_URL);
 
 db = cloudantDB.db.use(process.env.CLOUDANT_DB);
 dbOutros = cloudantDB.db.use(process.env.CLOUDANT_DBTREINO);
@@ -197,7 +196,7 @@ var cloudant = {
 
         var query = {
             "selector": {
-                "data": {"$gte" : data}
+                "data": {"$regex" : data}
             },
             "fields": ["data","_id"]
         };
@@ -263,6 +262,11 @@ var cloudant = {
             }
         });
     },
+
+    getInfoAssunto : function (req,res) {
+
+        
+    }
 
 };
 

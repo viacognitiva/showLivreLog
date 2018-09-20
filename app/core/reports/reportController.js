@@ -4,9 +4,9 @@
     angular.module('app.reports', ['ngAnimate','ngSanitize','ui.bootstrap','cgBusy','app.reportService','app.chatService'])
         .controller('reportController', reportController);
 
-    reportController.$inject = ['$rootScope','$scope','$log','$http','$uibModal','$window','reportService','chatService'];
+    reportController.$inject = ['$rootScope','$scope','reportService','chatService'];
 
-    function reportController($rootScope,$scope,$log,$http,$uibModal,$window,reportService,chatService) {
+    function reportController($rootScope,$scope,reportService,chatService) {
 
         var vm = this;
 
@@ -36,7 +36,7 @@
             ]
         };
 
-         var barDataAno = {
+        var barDataAno = {
             labels: ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"],
             datasets: [
                 {

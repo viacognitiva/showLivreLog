@@ -8,14 +8,6 @@
 
     function reportService($http) {
 
-        var qtdAcessoDia = 0;
-        var qtdAcessoMes = 0;
-        var qtdAcessoAno = 0;
-        var qtdAcessoMesAtual = 0;
-        var qtdAcessoUserDia = 0;
-
-        var config = {headers : {'Content-Type': 'application/json; charset=utf-8'}};
-
         return {
             getDia: getDia,
             getMes: getMes,
@@ -27,6 +19,13 @@
             getQtdAcessoMesAtual: getQtdAcessoMesAtual,
             getQtdAcessoUserDia: getQtdAcessoUserDia
         };
+
+        var qtdAcessoDia = 0;
+        var qtdAcessoMes = 0;
+        var qtdAcessoAno = 0;
+        var qtdAcessoMesAtual = 0;
+        var qtdAcessoUserDia = 0;
+        var config = {headers : {'Content-Type': 'application/json; charset=utf-8'}};
 
         function getDia(dataBusca) {
 
@@ -77,7 +76,7 @@
                     for(i = 0; i < docs.length;i++){
                         mesTmp = new Date(docs[i].dateText).getMonth();
                         retorno[mesTmp] = retorno[mesTmp] + 1;
-                        qtdAcessoMes = qtdAcessoMes + 1
+                        qtdAcessoMes = qtdAcessoMes + 1;
                     }
                 }
                 return retorno;

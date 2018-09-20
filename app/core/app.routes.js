@@ -10,13 +10,10 @@
         $urlRouterProvider.when('', '/report/list');
         $urlRouterProvider.when('/', '/report/list');
         $urlRouterProvider.when('/chat', '/chat/list');
-        $urlRouterProvider.when('/chat/', '/chat/list');
         $urlRouterProvider.when('/user', '/user/list');
-        $urlRouterProvider.when('/user/', '/user/list');
         $urlRouterProvider.when('/outros', '/outros/list');
-        $urlRouterProvider.when('/outros/', '/outros/list');
         $urlRouterProvider.when('/report', '/report/list');
-        $urlRouterProvider.when('/aval/', '/aval/list');
+        $urlRouterProvider.when('/intent', '/intent/list');
         $urlRouterProvider.when('/aval', '/aval/list');
 
         $stateProvider
@@ -166,6 +163,32 @@
                     }
                 }
             })
+            .state('root.intent', {
+                    abstract: true,
+                    url: 'intent',
+                    data: {
+                        title: 'Relatórios',
+                        breadcrumb: 'Relatórios'
+                    }
+                })
+                .state('root.intent.list', {
+                    url: '/list',
+                    restrictions: {
+                        ensureAuthenticated: true
+                    },
+                    data: {
+                        title: 'Relatórios',
+                        breadcrumb: 'Relatórios',
+                        caminho: '/intent/list'
+                    },
+                    views: {
+                        'content@': {
+                            templateUrl: 'core/reports/intents.html',
+                            controller: 'intentController',
+                            controllerAs: 'IC'
+                        }
+                    }
+                })
             .state('root.aval', {
                 abstract: true,
                 url: 'aval',

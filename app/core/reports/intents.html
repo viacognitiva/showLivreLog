@@ -8,8 +8,9 @@
                     <div class="row">
                         <div class="col-lg-10">
                             <div class="widget fundoCinza text-center">
-                                <h1>{{RC.qtdAcessoDia}}</h1>
-                                <h3>acessos<br>nas últimas 24 horas</h3>
+
+                                ...
+
                             </div>
                         </div>
                     </div>
@@ -21,7 +22,8 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div>
-                        <canvas barchart options="RC.barOptions" data="RC.barDataDia" responsive="true" id="chart1"></canvas>
+                        <canvas doughnutchart options="IC.doughnutOptions" data="IC.doughnutData" height="140" 
+                            responsive=true></canvas>
                     </div>
                 </div>
             </div>
@@ -36,7 +38,9 @@
                 <div class="widget lazur-bg no-padding">
                     <div class="row">
                         <div class="col-lg-9 widget fundoCinzaClaro">
-                            <div class="text-center"><h1>Totais</h1></div>
+                            <div class="text-center">
+                                <h1>Totais</h1>
+                            </div>
                             <div class="resultado"><span class="fundoVerde">{{totalChat}}</span> Conversas</div>
                             <div class="resultado"><span class="fundoCinza">{{totalInter}}</span> Interações</div>
                             <!--<div class="resultado"><span class="fundoAzul">{{RC.qtdAcessoMes}}</span> Mês</div>-->

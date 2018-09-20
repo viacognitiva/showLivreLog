@@ -86,7 +86,6 @@ modChart.chart = function (type) {
     }
 }
 
-
 /* Aliases for various chart types */
 modChart.directive("chart", function () { return modChart.chart(); });
 modChart.directive("linechart", function () { return modChart.chart("Line"); });

@@ -19,6 +19,7 @@
         'app.modal',
         'app.modal.det',
         'app.directives.divSize',
+        'app.directives.angularFlot',
         'app.module.chart'
     ]);
 })();

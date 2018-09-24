@@ -9,7 +9,8 @@
     function intentService($http) {
 
         return {
-            getDados: getDados
+            getDados: getDados,
+            getData: getData
         };
 
         var config = {
@@ -18,9 +19,9 @@
             }
         };
 
-        function getDados() {
-
-            var retorno = [];            
+        function getDados() {            
+            
+            var retorno = [];
 
             return $http.get('/api/conversation/chat', config)
                 .then(retornaData)
@@ -53,14 +54,14 @@
                                 }
 
                                 if (flagAdd) {
-
+                                    
                                     retorno.push({
                                         'value': 1,
                                         'color': "#a3e1d4",
                                         'highlight': "#1ab394",
                                         'label': intencao
                                     });
-
+                                    
                                 }
                             }
                         }
@@ -75,5 +76,32 @@
                 return error;
             }
         }
+
+        function getData(valores){
+
+            var retorno = [];
+
+            for(var w=0; w < valores.length; w++){
+
+                retorno.push(
+                    {
+                        'label': valores[w].label,
+                        'data': valores[w].value,
+                        'color': getRandomColor()
+                    }
+                )
+
+            }
+            return retorno;
+        }
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+              color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+          }
     }
 })();

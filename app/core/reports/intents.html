@@ -21,10 +21,24 @@
         <div class="col-lg-5">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
+                    <!--<div>
+                        <canvas doughnutchart 
+                                options="IC.doughnutOptions" 
+                                data="IC.doughnutData" 
+                                height="140" 
+                                responsive=true>
+                        </canvas>
+                    </div>-->
                     <div>
-                        <canvas doughnutchart options="IC.doughnutOptions" data="IC.doughnutData" height="140" 
-                            responsive=true></canvas>
+                        <div class="flot-chart">
+                            <div flot class="flot-chart-content" 
+                                dataset="IC.pieData" 
+                                options="IC.pieOptions">
+                            </div>
+                        </div>    
                     </div>
+
+
                 </div>
             </div>
         </div>

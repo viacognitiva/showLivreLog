@@ -4,9 +4,9 @@
     angular.module('app.chat', ['ngAnimate','ngSanitize','ui.bootstrap','cgBusy','app.chatService'])
         .controller('chatController', chatController);
 
-        chatController.$inject = ['$rootScope','$scope','$log','$http','$uibModal','$window','chatService'];
+        chatController.$inject = ['$rootScope','$scope','$uibModal','chatService'];
 
-        function chatController($rootScope,$scope,$log,$http,$uibModal,$window,chatService) {
+        function chatController($rootScope,$scope,$uibModal,chatService) {
 
             var vm      = this;
             vm.buscar   = buscar;
@@ -34,8 +34,8 @@
             vm.sortType     = 'data';
             vm.sortReverse  = true;
 
-            $rootScope.totalChat = 0;
-            $rootScope.totalInter = 0;
+            //$rootScope.totalChat = 0;
+            //$rootScope.totalInter = 0;
             $rootScope.media = 0;
             $rootScope.showInfo = true;
 
@@ -44,10 +44,9 @@
             function getJson() {
                 return chatService.getChat().then(function(data) {
                     vm.items = data;
-                    $rootScope.totalInter = chatService.retornaQdt();
-                    $rootScope.totalChat = chatService.retornaQdtChat();
+                    //$rootScope.totalInter = chatService.retornaQdt();
+                    //$rootScope.totalChat = chatService.retornaQdtChat();
                     $rootScope.media = ($rootScope.totalInter / $rootScope.totalChat).toFixed(0);
-
                 });
             }
 

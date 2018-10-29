@@ -1,4 +1,4 @@
-require('dotenv-safe').load();
+ require('dotenv-safe').load();
 
 var Cloudant = require('@cloudant/cloudant');
 var cloudantDB = Cloudant(process.env.CLOUDANT_URL);
@@ -38,8 +38,7 @@ var cloudant = {
         db.list({include_docs:true},function(err, data) {
             if(err){
                 res.status(500);
-                return console.log('[getChat] ', err.message);
-                
+                return console.log('[getChat] ', err.message);                
             }
             res.status(200).json(data);
         });
@@ -76,38 +75,70 @@ var cloudant = {
 
         if(req.body.banco == 'chat'){
 
-            db.index( {_id: '_id', type:'json', index:{fields:['_id']}});
-            var query = { selector: { _id: id }};
+            var query = { 
+                "selector": {
+                    "_id": {
+                        "$eq": id
+                    }
+                },
+                "fields": ["_id","_rev","data","status","config","statusText","dateText","treinado"]
+            };
+            
+            db.index({
+                "_id": "_id",
+                "type": "json",
+                "index": {
+                    "fields": ["_id","_rev","data","status","config","statusText","dateText","treinado"]
+                }
+            });
 
             db.find(query, function(err, data) {
 
                 if (err) {
-                    res.status(201).json(err);
-                    return console.log('[db.atualizaStatusTreinamento] ', err.message);
+                    console.log('[db.atualizaStatusTreinamento] ', err.message);
+                    return res.status(401).json(err);
                 }else{
                     data.docs[0].treinado = true;
                     db.insert(data.docs[0], function(err, data) {
-                        if (err) return console.log(err.message);
+                        if (err) return console.log('Updata flag chat:' + err.message);
                         res.status(201).json(data);
                     });
-
                 }
 
             });
 
         } else {
 
-            dbOutros.get(id, function(err, data){
+            var query = {
+                "selector": {
+                    "_id": {
+                        "$eq": id
+                    }
+                },
+                "fields": ["_id", "_rev", "idchat", "texto", "data", "treinado"]
+            };
 
-                if(err){
-                    res.status(201).json(err);
-                }else{
-                    data.treinado = true;
-                    db.insert(data, function(err, data) {
-                        if (err) return console.log(err.message);
+            dbOutros.index({
+                "_id": "_id",
+                "type": "json",
+                "index": {
+                    "fields": ["_id", "_rev", "idchat", "texto", "data", "treinado"]
+                }
+            });
+
+            dbOutros.find(query, function (err, data) {
+
+                if (err) {
+                    console.log('[db.atualizaStatusTreinamento] ', err.message);
+                    return res.status(401).json(err);
+                } else {
+                    data.docs[0].treinado = true;
+                    dbOutros.insert(data.docs[0], function (err, data) {
+                        if (err) return console.log('Updata flag chat:' + err.message);
                         res.status(201).json(data);
                     });
                 }
+
             });
 
         }

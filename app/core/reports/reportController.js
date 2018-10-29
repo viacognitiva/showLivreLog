@@ -81,7 +81,7 @@
 
             });
 
-            reportService.getAno().then(function(dados) {
+            return reportService.getAno().then(function(dados) {
 
                 barDataAno = {
                     labels: ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"],
@@ -102,10 +102,6 @@
 
             });
 
-            return chatService.getChat().then(function() {
-                $rootScope.totalInter = chatService.retornaQdt();
-                $rootScope.totalChat = chatService.retornaQdtChat();
-            });
         }
 
         vm.barDataDia = barDataDia;

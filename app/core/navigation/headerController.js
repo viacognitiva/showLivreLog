@@ -4,17 +4,19 @@
     angular.module('app.nav.header', [])
         .controller('headerController', headerController);
 
-    headerController.$inject = ['$location','$localStorage'];
+    headerController.$inject = ['$location', '$sessionStorage', '$indexedDB'];
 
-    function headerController($location,$localStorage) {
+    function headerController($location, $sessionStorage, $indexedDB) {
 
         var vm = this;
         vm.logout = logout;
 
         function logout(){
 
-            $localStorage.token = '';
-            $location.path('/login');
+            delete $sessionStorage.token;
+            $indexedDB.deleteDatabase('monitora').then(function(dele) {
+                $location.path('/login')
+            })
 
         }
 

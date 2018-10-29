@@ -9,21 +9,21 @@
   "author": "Rodrigo Florentino",
   "license": "ISC",
   "dependencies": {
-    "@cloudant/cloudant": "^2.3.0",
-    "body-parser": "^1.18.2",
+    "@cloudant/cloudant": "^2.4.0",
+    "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "dotenv-safe": "^4.0.4",
-    "express": "^4.16.2",
+    "express": "^4.16.4",
     "express-session": "^1.15.6",
-    "helmet": "^3.9.0",
-    "jsonwebtoken": "^8.1.1",
-    "watson-developer-cloud": "^3.7.0"
+    "helmet": "^3.14.0",
+    "jsonwebtoken": "^8.3.0",
+    "watson-developer-cloud": "^3.12.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/viacognitiva/viaBotLog.git"
   },
   "engines": {
-    "node": "6.9.4"
+    "node": "8.11.4"
   }
 }

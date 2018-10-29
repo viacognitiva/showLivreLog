@@ -19,6 +19,7 @@ app.get('/api/conversation/usuarios', function(req, res) {
     cloudant.getUsuarios(req, res);
 });
 
+/*
 app.get('/api/conversation/entities', function(req, res) {
     logconversation.getEntidades(req, res);
 });
@@ -34,9 +35,14 @@ app.get('/api/conversation/entidade/value/:entity', function(req, res) {
 app.post('/api/conversation/entidade/synonyms', function(req, res) {
     logconversation.criarSinonimo(req, res);
 });
+*/
 
 app.get('/api/conversation/intencoes', function(req, res) {
     logconversation.getIntencoes(req, res);
+});
+
+app.get('/api/conversation/listintencoes/:intent', function (req, res) {
+    logconversation.getIntencaoExamplos(req, res);
 });
 
 app.post('/api/conversation/intencao', function(req, res) {

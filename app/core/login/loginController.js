@@ -1,11 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('app.login',['ngStorage']).controller('loginController', loginController);
+    angular.module('app.login', ['ngStorage', 'app.localService'])
+    .controller('loginController', loginController);
 
-    loginController.$inject = ['$scope','$http','$location','$localStorage'];
+    loginController.$inject = ['$scope', '$http', '$location', '$sessionStorage', 'localService'];
 
-    function loginController($scope, $http, $location, $localStorage) {
+    function loginController($scope, $http, $location, $sessionStorage, localService) {
 
         var vm = this;
         vm.logar = logar;
@@ -22,7 +23,8 @@
                 function(response){
                     if(response.status==200){
                         if(response.data.user.name!=''){
-                            $localStorage.token = response.data.token;
+                            $sessionStorage.token = response.data.token;
+                            localService.loadBanco()
                             $location.path('/report');
                         }
                     }

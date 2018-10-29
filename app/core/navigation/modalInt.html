@@ -5,15 +5,23 @@
     <div class="form-group">
         <div>
             <label>Intenção</label>
-            <select ng-model="selectedIntencao" class="form-control">
+            <select ng-model="$ctrl.selectedIntencao" class="form-control" ng-change="$ctrl.onChangeIntencao()">
                 <option value="">-- selecione a intenção --</option>
                 <option ng-repeat="x in $ctrl.intencoes" value="{{x.descricao}}">{{x.descricao}}</option>
             </select>
         </div>
+        <div>
+            <label>Exemplos</label>
+            <div class="listaModal">
+                <ul>
+                    <li ng-repeat="list in $ctrl.listaIntencao">{{list.desc}}</li>
+                </ul>
+            </div>
+        </div>
         <br/>
         <div style="text-align: left;">
             <label>Mensagem:</label>
-            <span>{{$ctrl.mensagemIntencao}}</span>
+            <input type="text" class="form-control" ng-model="$ctrl.mensagemIntencao">
         </div>
         <div class="alert alert-success" role="alert" ng-if="$ctrl.sucessoMessage">{{$ctrl.sucessoMessage}}</div>
         <div class="alert alert-danger" role="alert" ng-if="$ctrl.errorMessage">{{$ctrl.errorMessage}}</div>

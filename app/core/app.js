@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('app', [
+        'indexedDB',
         'ui.router',
         'app.index',
         'app.login',
@@ -20,6 +21,7 @@
         'app.modal.det',
         'app.directives.divSize',
         'app.directives.angularFlot',
-        'app.module.chart'
+        'app.module.chart',
+        'app.localService'
     ]);
 })();

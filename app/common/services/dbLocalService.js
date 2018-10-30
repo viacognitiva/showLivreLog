@@ -20,18 +20,17 @@
         };
 
         return {
-            loadBanco: loadBanco
+            loadBanco: loadBanco,
+            grafico1: grafico1
         }
 
         function loadBanco() {
-            loadDataUser().then(
-                loadDataChat()
-            )
+            loadDataUser()
         }
 
         function loadDataUser() {
             return $http.get('/api/conversation/usuarios')
-            .then(function (response) {
+            .then(function(response) {
 
                 var data = response.data;
 
@@ -43,7 +42,7 @@
                     jsonParam.nome = item.doc.nome;
                     jsonParam.email = item.doc.email;
                     jsonParam.fone = item.doc.telefone;
-                    jsonParam.data = $filter('date')(new Date(item.doc.data), "dd/MM/yyyy HH:mm:ss");
+                    jsonParam.data = $filter('date')(new Date(item.doc.data), "dd/MM/yyyy");
                     jsonParam.selected = '';
 
                     if (!angular.equals(jsonParam, {})) {
@@ -54,8 +53,8 @@
 
                 $rootScope.usuarios = retUser;
 
-                $indexedDB.openStore('user', function (store) {
-                    store.clear().then(function () {
+                $indexedDB.openStore('user', function(store) {
+                    store.clear().then(function() {
                         store.upsert(retUser)
                     })
 

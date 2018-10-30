@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    angular.module('app.reports', ['ngAnimate','ngSanitize','ui.bootstrap','cgBusy','app.reportService','app.chatService'])
+    angular.module('app.reports', ['ngAnimate', 'ngSanitize', 'ui.bootstrap', 'cgBusy', 'app.reportService', 'app.localService'])
         .controller('reportController', reportController);
 
-    reportController.$inject = ['$rootScope','$scope','reportService','chatService'];
+    reportController.$inject = ['$rootScope', '$scope', 'reportService', 'localService'];
 
-    function reportController($rootScope,$scope,reportService,chatService) {
+    function reportController($rootScope, $scope, reportService, localService) {
 
         var vm = this;
 

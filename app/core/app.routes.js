@@ -251,7 +251,6 @@
             objStore.createIndex('id_idx', 'chatId', {
                 unique: false
             });
-
             objStore.createIndex('data_idx', 'data', {
                 unique: false
             });
@@ -261,6 +260,9 @@
                 keyPath: 'id'
             });
             objStore.createIndex('id_idx', 'id', {
+                unique: false
+            });
+            objStore.createIndex('data_idx', 'data', {
                 unique: false
             });
         })

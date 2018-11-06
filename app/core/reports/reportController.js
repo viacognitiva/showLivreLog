@@ -79,29 +79,29 @@
                 vm.barDataDia = barDataDia;
                 vm.qtdAcessoDia =reportService.getQtdAcessoUserDia();
 
+                return reportService.getAno().then(function(dados) {
+
+                    barDataAno = {
+                        labels: ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"],
+                        datasets: [
+                            {
+                                label: "Quantidade de Acessos",
+                                fillColor: "rgba(220,220,220,0.8)",
+                                strokeColor: "rgba(220,220,220,0.8)",
+                                highlightFill: "rgba(220,220,220,0.75)",
+                                highlightStroke: "rgba(220,220,220,1)",
+                                data:dados
+                            }
+                        ]
+                    };
+
+                    vm.barDataAno = barDataAno;
+                    vm.qtdAcessoMes = reportService.getQtdAcessoMesAtual();
+                    vm.totalChat = reportService.getQtdAcessoAno();
+                    vm.totalInter = reportService.getQtdAcessoInter();
+
+                });
             });
-
-            return reportService.getAno().then(function(dados) {
-
-                barDataAno = {
-                    labels: ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"],
-                    datasets: [
-                        {
-                            label: "Quantidade de Acessos",
-                            fillColor: "rgba(220,220,220,0.8)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data:dados
-                        }
-                    ]
-                };
-
-                vm.barDataAno = barDataAno;
-                vm.qtdAcessoMes = reportService.getQtdAcessoMesAtual();
-
-            });
-
         }
 
         vm.barDataDia = barDataDia;

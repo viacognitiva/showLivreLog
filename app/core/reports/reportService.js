@@ -13,6 +13,7 @@
         var qtdAcessoAno = 0;
         var qtdAcessoMesAtual = 0;
         var qtdAcessoUserDia = 0;
+        var qtdAcessoInter = 0;
         var config = {
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -28,7 +29,8 @@
             getQtdAcessosMes: getQtdAcessoMes,
             getQtdAcessoAno: getQtdAcessoAno,
             getQtdAcessoMesAtual: getQtdAcessoMesAtual,
-            getQtdAcessoUserDia: getQtdAcessoUserDia
+            getQtdAcessoUserDia: getQtdAcessoUserDia,
+            getQtdAcessoInter: getQtdAcessoInter
         };
 
         function getDia(dataBusca){
@@ -97,12 +99,10 @@
             qtdAcessoAno = 0;
             qtdAcessoMesAtual = 0;
             var retorno = [0,0,0,0,0,0,0,0,0,0,0,0];
+            var listaId = [];
 
             return $http.get('/api/conversation/getInfoAno',config)
-                .then(procRetorno)
-                .catch(procErro);
-
-            function procRetorno(response) {
+            .then(function(response){
 
                 var docs = response.data.docs;
                 var i = 0;
@@ -121,16 +121,23 @@
                             qtdAcessoMesAtual = qtdAcessoMesAtual + 1;
                         }
 
+                        if (!listaId.includes(docs[i].data.context.conversation_id)) {
+                            listaId.push(docs[i].data.context.conversation_id);
+                        }
+
                     }
+
+                    qtdAcessoInter = listaId.length;
                 }
 
                 return retorno;
-            }
 
-            function procErro(error) {
-                console.log(error.data.message);
+            })
+            .catch(function(error){
+                console.log(error);
                 return error;
-            }
+            });
+
         }
 
         function getUserDia(dataBusca) {
@@ -163,32 +170,6 @@
             }
         }
 
-        function getIntent() {
-
-            return $http.get('/api/conversation/getInfo',config)
-                .then(retornaInfo)
-                .catch(errorInfo);
-
-            function retornaInfo(response) {
-
-                var docs = response.data.docs;
-
-                if(docs.length > 0) {
-                    for (var i = 0; i < docs.length; i++) {
-
-
-                    }
-                }
-
-            }
-
-            function errorInfo(error) {
-                console.log(error);
-                return error;
-            }
-
-        }
-
         function getQdtAcessoDia(){
             return qtdAcessoDia
         }
@@ -207,6 +188,10 @@
 
         function getQtdAcessoUserDia() {
             return qtdAcessoUserDia
+        }
+
+        function getQtdAcessoInter(){
+            return qtdAcessoInter
         }
     }
 })();

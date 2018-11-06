@@ -21,7 +21,9 @@
         'app.modal.det',
         'app.directives.divSize',
         'app.directives.angularFlot',
+        'app.directives.myTextInput',
+        'app.directives.modeloTabela',
         'app.module.chart',
-        'app.localService'
+        'app.localService'        
     ]);
 })();

@@ -255,17 +255,6 @@
                 unique: false
             });
         })
-        .upgradeDatabase(2, function (event, db, tx) {
-            var objStore = db.createObjectStore('chat', {
-                keyPath: 'id'
-            });
-            objStore.createIndex('id_idx', 'id', {
-                unique: false
-            });
-            objStore.createIndex('data_idx', 'data', {
-                unique: false
-            });
-        })
     };
 
     angular.module('app').run(run);

@@ -20,8 +20,7 @@
         };
 
         return {
-            loadBanco: loadBanco,
-            grafico1: grafico1
+            loadBanco: loadBanco
         }
 
         function loadBanco() {

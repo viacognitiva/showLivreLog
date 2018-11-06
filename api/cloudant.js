@@ -1,4 +1,4 @@
- require('dotenv-safe').load();
+require('dotenv-safe').load();
 
 var Cloudant = require('@cloudant/cloudant');
 var cloudantDB = Cloudant(process.env.CLOUDANT_URL);
@@ -205,7 +205,7 @@ var cloudant = {
                     "$regex": ano
                 }
             },
-            "fields": ["dateText","_id"]
+            "fields": ["dateText","data","_id"]
         };
 
         db.index( {dateText: 'dateText', type:'json', index:{fields:['dateText']}});

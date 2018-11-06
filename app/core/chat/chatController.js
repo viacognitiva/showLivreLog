@@ -34,8 +34,8 @@
             vm.sortType     = 'data';
             vm.sortReverse  = true;
 
-            //$rootScope.totalChat = 0;
-            //$rootScope.totalInter = 0;
+            $rootScope.totalChat = 0;
+            $rootScope.totalInter = 0;
             $rootScope.media = 0;
             $rootScope.showInfo = true;
 
@@ -44,8 +44,8 @@
             function getJson() {
                 return chatService.getChat().then(function(data) {
                     vm.items = data;
-                    //$rootScope.totalInter = chatService.retornaQdt();
-                    //$rootScope.totalChat = chatService.retornaQdtChat();
+                    $rootScope.totalInter = chatService.retornaQdt();
+                    $rootScope.totalChat = chatService.retornaQdtChat();
                     $rootScope.media = ($rootScope.totalInter / $rootScope.totalChat).toFixed(0);
                 });
             }

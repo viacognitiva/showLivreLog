@@ -35,38 +35,40 @@
 
                 var jsonParam = {};
 
-                angular.forEach(item.doc.data.entities, function (ent) {
-                    jsonParam.entidade = ent.entity;
-                    jsonParam.confidenceEntidade = parseFloat((ent.confidence * 100).toFixed(2));
-                });
+                if (item.doc.data){
 
-                angular.forEach(item.doc.data.intents, function (int) {
-                    jsonParam.intencao = int.intent;
-                    jsonParam.confidenceIntencao = parseFloat((int.confidence * 100).toFixed(2));
-                });
+                    angular.forEach(item.doc.data.entities, function (ent) {
+                        jsonParam.entidade = ent.entity;
+                        jsonParam.confidenceEntidade = parseFloat((ent.confidence * 100).toFixed(2));
+                    });
 
-                jsonParam.msgUser = item.doc.data.input.text;
-                jsonParam.msgWatson = item.doc.data.output.text[0];
+                    angular.forEach(item.doc.data.intents, function (int) {
+                        jsonParam.intencao = int.intent;
+                        jsonParam.confidenceIntencao = parseFloat((int.confidence * 100).toFixed(2));
+                    });
 
-                if (item.doc.data.context.conversation_id.length != 0) {
-                    jsonParam.conversation_id = item.doc.data.context.conversation_id;
-                    jsonParam.data = $filter('date')(new Date(item.doc.dateText), "dd/MM/yyyy HH:mm:ss");
-                    jsonParam.id = item.id;
-                    jsonParam.treinado = item.doc.treinado;
+                    jsonParam.msgUser = item.doc.data.input.text;
+                    jsonParam.msgWatson = item.doc.data.output.text[0];
+
+                    if (item.doc.data.context.conversation_id.length != 0) {
+                        jsonParam.conversation_id = item.doc.data.context.conversation_id;
+                        jsonParam.data = $filter('date')(new Date(item.doc.dateText), "dd/MM/yyyy HH:mm:ss");
+                        jsonParam.id = item.id;
+                        jsonParam.treinado = item.doc.treinado;
+                    }
+
+                    jsonParam.nome = getNome(item.doc.data.context.conversation_id);
+
+                    if (!angular.equals(jsonParam, {})) {
+                        retorno.push(jsonParam);
+                    }
+
+                    if (!listaId.includes(item.doc.data.context.conversation_id)) {
+                        listaId.push(item.doc.data.context.conversation_id);
+                    }
+
+                    qtdChat = qtdChat + 1;
                 }
-
-                jsonParam.nome = getNome(item.doc.data.context.conversation_id);
-
-                if (!angular.equals(jsonParam, {})) {
-                    retorno.push(jsonParam);
-                }
-
-                if (!listaId.includes(item.doc.data.context.conversation_id)) {
-                    listaId.push(item.doc.data.context.conversation_id);
-                }
-
-                qtdChat = qtdChat + 1;
-
             });
 
             qtdConv = listaId.length;
